@@ -3,38 +3,79 @@
 // 若不確定答案，可將 code 貼在 chrome console 顯示後，再回頭補知識點。
 let a = 9;
 let b = 13;
+
 console.log(a > 0);
+//print true, 9 > 0: true
 console.log(b > a);
+//print true, 13 > 9: true
 console.log(a + b > 1);
+//print true, 9 + 13 > 1: true
+//+ 加法運算子(優先度12), > 比較運算子(優先度10)
+
+///////////////////////////////////////////////////
 let c = 51;
 let d = 163;
+
 console.log(c == d);
+//print false, 51 == 163: false
+//== 相等運算子(優先度9)
 console.log(c !== d);
+//print true, 51 !== 163: true
+//!== 不相等運算子(優先度9)
+
+///////////////////////////////////////////////////
 let e = 28;
 let f = 45;
-console.log(f >= e);
-console.log(f != e);
-console.log(f == e);
 
+console.log(f >= e);
+//print true, 45 >= 28: true
+//>= 比較運算子(優先度10)
+console.log(f != e);
+//print true, 45 != 28: true
+//!= 不相等運算子(優先度9)
+console.log(f == e);
+//print false, 45 == 28: false
+//== 相等運算子(優先度9)
+
+///////////////////////////////////////////////////
 // ### 題目二：比較運算子 + 強制轉型
 // 請回答每個 console.log 的值為？
 let g = 8;
 let h = '8';
-console.log(g * h == 88);
-console.log(g * h == 64);
-console.log(g * h === 64);
 
+console.log(g * h == 88);
+//print true, 8 * '8'隱式轉型為數字 64, 64 == 88: false
+//* 乘法運算子(優先度13), == 相等運算子(優先度9)
+console.log(g * h == 64);
+//print true, 8 * '8'隱式轉型為數字 64, 64 == 64: true
+//* 乘法運算子(優先度13), == 相等運算子(優先度9)
+console.log(g * h === 64);
+//print true, 8 * '8'隱式轉型為數字 64, 64 === 64: true
+//* 乘法運算子(優先度13), === 嚴格相等運算子(優先度9)
+
+///////////////////////////////////////////////////
 let i = '9';
 let j = '9';
-console.log(i + j == 99);
-console.log(i + j === '99');
-console.log(i + j === 99);
 
+console.log(i + j == 99);
+//print true, '9' + '9',隱式轉型為文字'99', '99' == '99': true
+//+ 加法運算子(優先度12), == 相等運算子(優先度9)
+console.log(i + j === '99');
+//print true, '9' + '9',隱式轉型為文字'99', '99' === '99': true
+//+ 加法運算子(優先度12), === 嚴格相等運算子(優先度9)
+console.log(i + j === 99);
+//print false, '9' + '9',隱式轉型為文字'99', '99' === 99: false
+//+ 加法運算子(優先度12), === 嚴格相等運算子(優先度9)
+
+///////////////////////////////////////////////////
 var k = 3;
 var l = '8';
 // 請文字解釋為什麼
 console.log(k * l > 21);
+//print true, 3 * '8'隱式轉型為數字 24, 24 > 21: true
+//* 乘法運算子(優先度13), > 比較運算子(優先度10)
 
+///////////////////////////////////////////////////
 // ### 題目三：邏輯運算子 + if, else
 // 情境：健身房週年慶，買課程送贈品
 // 健身房準備了 280 個贈品，只要有達以下條件之一，就送會員一個贈品
@@ -54,9 +95,17 @@ let BobIsVip = false; /* Bob 是否為 VIP */
 // } else {
 //   console.Log（"客戶您好，您沒有符合贈品資格"）
 // }
+// if(消費滿 1599 元 || 是健身房的 VIP 會員) {送贈品;贈品數量 -= 1;}
+if ( BobPrice >= giftPriceRule || BobIsVip ) {
+  console.log("客戶您好，您有符合贈品資格");
+  giftNum -= 1;
+} else {
+  console.log("客戶您好，您沒有符合贈品資格");
+}
 
 console.log(`贈品還剩下${giftNum}個`);
 
+///////////////////////////////////////////////////
 // ### 題目四：
 // 健身房的業績獎金計算
 // 會計官想寫一個程式，來計算教練的業績獎金，以下為條件值
@@ -68,25 +117,38 @@ console.log(`贈品還剩下${giftNum}個`);
 // 例如小華的全年業績為 8 萬：80,000 * 0.1 + 6,000 總計需要支付 14,000 元獎金。
 
 let coachIncome = 240000; // 小明全年業績
-let baseBonus = 6000; // 基本獎金
+let baseBonus = 6000;     // 基本獎金
 let coachBonus = baseBonus; // 教練業績獎金帳單，並已加入條件一基本獎金
 
 // 練習：計算教練業績獎金
-
+if (coachIncome <= 100000) {
+  coachBonus += coachIncome * 0.1;
+} else if (coachIncome > 300000) {
+  coachBonus += coachIncome * 0.2;
+} else {
+  coachBonus += coachIncome * 0.15;
+}
 console.log(`小明總共需支付 $${coachBonus} 獎金`);
 
+///////////////////////////////////////////////////
 // ### 題目五：剪刀石頭布
 // 請寫程式來判斷剪刀石頭布的輸贏
 // 宣告兩個變數，一個是 playerA 另一個是 playerB
 // 請透過 if, if 包 if, else if, else 等方法思考每個玩家出拳的情境
 
-let playerA = '剪刀';
-let playerB = '剪刀';
-if (playerA === '剪刀' && playerB === '剪刀') {
+const choice = ['剪刀', '石頭', '布'];
+let playerA = choice[0];
+let playerB = choice[0];
+if ((playerA === choice[0] && playerB === choice[0]) || (playerA === choice[1] && playerB === choice[1]) || (playerA === choice[2] && playerB === choice[2])) {
   console.log('平手');
+}else if ((playerA === choice[0] && playerB === choice[2]) || (playerA === choice[1] && playerB === choice[0]) || (playerA === choice[2] && playerB === choice[1])) {
+  console.log('playerA 贏');
+}else {
+  console.log('playerB 贏');
 }
 // 練習：使用 if, else if, else 判斷輸贏
 
+///////////////////////////////////////////////////
 // ### 題目六：陣列、物件變數定義
 // 這是一間位於高雄市的健身房，名為「高雄市健身教練聯盟」，專注於提供高品質的健身指導服務。健身房內有多位專業教練，以下是兩位教練的詳細介紹：
 /*
@@ -107,10 +169,52 @@ if (playerA === '剪刀' && playerB === '剪刀') {
 - 是否接收新學員：否
 */
 
-const gymCoach = {}; // 練習：使用物件變數定義兩位教練的資訊
+const gymCoach = [
+  {
+    coachName: "王教練",
+    expertise: ["力量訓練", "減重課程"],
+    course: [
+      {
+        courseName: "個人訓練課程", 
+        coursePrice: 2000, 
+        courseDuration: 60, 
+        courseAvailable: true
+      },
+      {
+        courseName: "團體訓練課程", 
+        coursePrice: 1500, 
+        courseDuration: 90, 
+        courseAvailable: false
+      }
+    ],
+    background: "王教練擁有 5 年教學經驗，專精於提升學員的肌力與減脂，適合希望快速達成體能目標的學員。",
+    acceptNewStudents: true
+  },
+  {
+    coachName: "李教練",
+    expertise: ["瑜伽", "體態雕塑"],
+    course: [
+      {
+        courseName: "個人訓練課程", 
+        coursePrice: 1800, 
+        courseDuration: 50, 
+        courseAvailable: false
+      },
+      {
+        courseName: "團體訓練課程", 
+        coursePrice: 1200, 
+        courseDuration: 75, 
+        courseAvailable: true
+      }
+    ],
+    background: "李教練是一位瑜伽大師，擁有 10 年教學經驗，擅長幫助學員雕塑完美體態，適合希望改善姿態與柔軟度的學員。",
+    acceptNewStudents: false
+  }
+]; // 練習：使用物件變數定義兩位教練的資訊
 
 console.log(gymCoach);
 
+///////////////////////////////////////////////////
 // ### 題目七：
 // 主管要求健身中心的兩位教練業績都需達到 50,000元
 // 請透過以下資訊修改，幫助教練業績達標！
@@ -130,19 +234,23 @@ let performanceData = {
 };
 
 // 練習：第一位教練（可將下方程式碼註解移除，完成答題）
-
 // if (/* 判斷邏輯，使其為 true */) {
 //   // 請填寫第一位教練業績增長程式碼，使用 +=
 // }
-
 // 練習：第二位教練（可將下方程式碼註解移除，完成答題）
-
 // if (/* 判斷邏輯，使其為 true */) {
 //   // 請填寫第二位教練業績增長程式碼，使用 +=
 // }
+const target = 50000;
+performanceData.coaches.forEach(coach => {
+  while (coach.performance < target) {
+    coach.performance += 1000;
+  }
+});
 
-console.log(performanceData);
+// console.log(performanceData.coaches);
 
+////////////////////////////////////////////////////
 // ### 題目八
 /* 
 使用 `物件包含物件` 的格式定義以下內容：
@@ -150,19 +258,33 @@ console.log(performanceData);
   - 瑜伽每分鐘消耗 5 卡
   - 騎腳踏車每分鐘消耗 8 卡
 */
-const activities = {}; // 練習：使用 `物件包含物件` 的格式定義運動類型與每分鐘消耗卡路里
+const activities = {  // 練習：使用 `物件包含物件` 的格式定義運動類型與每分鐘消耗卡路里
+  treadmill: {
+    caloriePerMin: 10
+  },
+  yoga: {
+    caloriePerMin: 5
+  },
+  bicycle: {
+    caloriePerMin: 8
+  }
+};
 
+////////////////////////////////////////////////////
 // ## 題目九
 // 情境：算小明今天的卡路里消耗
 // 承上題，根據運動類型與每分鐘消耗卡路里的變數設計，計算小明消耗的卡路里。
 // 小明今天騎了 10 分鐘的腳踏車去健身房，並先跑了 30 分鐘的跑步機熱身，最後再參加了 40 分鐘的瑜伽團課，最後再騎 10 分鐘腳踏車回家。
 
 let calorieBurn = 0;
-
 // 練習：計算小明今日消耗的卡路里
+calorieBurn += activities.bicycle.caloriePerMin * 10;
+calorieBurn += activities.treadmill.caloriePerMin * 30;
+calorieBurn += activities.yoga.caloriePerMin * 40;
 
 console.log(`小明今日一共消耗約 ${calorieBurn} 卡路里。`);
 
+////////////////////////////////////////////////////
 // ### 10. 運動量是否達標！
 // 情境：小明記錄了一週內每一天的運動情況，包含運動時長（分鐘）和平均心率（次數）。
 /* 現有的運動標準為「533原則」：
@@ -174,8 +296,8 @@ console.log(`小明今日一共消耗約 ${calorieBurn} 卡路里。`);
 */
 
 // 運動紀錄
-let totalDuration = 0; // 累計符合條件的運動時間
-let validDays = 0; // 符合條件的運動次數
+let totalDuration = 0;  // 累計符合條件的運動時間
+let validDays = 0;      // 符合條件的運動次數
 
 // 小明的一週運動紀錄
 const exerciseRecords = [
@@ -187,14 +309,29 @@ const exerciseRecords = [
 ];
 
 // 範例：週一
+/*
+let mondayDuration = exerciseRecords[0].duration;
 if (exerciseRecords[0].duration >= 30 && exerciseRecords[0].heartRate >= 130) {
   totalDuration += mondayDuration;
   validDays += 1;
 }
+*/
 
 // 練習：週二、週三、週四、週五、週六
+exerciseRecords.forEach(record => {
+  if (record.duration >= 30 && record.heartRate >= 130) {
+    totalDuration += record.duration;
+    validDays += 1;
+  }
+});
+// console.log(`小明這週運動了 ${validDays} 次，累計運動時間 ${totalDuration} 分鐘。`);
 
 // 練習：判斷是否符合 533 原則
 let isCompliant; // 條件：運動次數至少 5 次 || 運動時間累績達標 >= 150;
+if(validDays >= 5 || totalDuration >= 150) {
+  isCompliant = true;
+} else {
+  isCompliant = false;
+}
 
 console.log(`小明的運動量是否達標: ${isCompliant}`); // 輸出: 小明的運動量是否達標
