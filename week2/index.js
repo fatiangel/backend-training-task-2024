@@ -139,7 +139,7 @@ console.log(`小明總共需支付 $${coachBonus} 獎金`);
 const choice = ['剪刀', '石頭', '布'];
 let playerA = choice[0];
 let playerB = choice[0];
-if ((playerA === choice[0] && playerB === choice[0]) || (playerA === choice[1] && playerB === choice[1]) || (playerA === choice[2] && playerB === choice[2])) {
+if (playerA === playerB) {
   console.log('平手');
 }else if ((playerA === choice[0] && playerB === choice[2]) || (playerA === choice[1] && playerB === choice[0]) || (playerA === choice[2] && playerB === choice[1])) {
   console.log('playerA 贏');
